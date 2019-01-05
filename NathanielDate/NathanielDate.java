@@ -146,7 +146,7 @@ public class NathanielDate
         return new NathanielDate(curDay, curMonth, curYear);
     }
 
-    //day totals based on 1950 so that numbers aren't too large but can go back pretty far, and dates before then shouldn't really be manipulated that much anyway
+    //day totals based on 0 so that numbers aren't too large but can go back pretty far, and dates before then shouldn't really be manipulated that much anyway
     public int getTotalDays()
     {
         //convert years to days since year 0
