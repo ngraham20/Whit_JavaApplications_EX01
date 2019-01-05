@@ -37,8 +37,7 @@ public class NathanielDate
             if (month == 2 && day == 28 && year % 4 == 0)
             {
                 return true;
-            }
-            return false;
+            }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 return false;
         }    
         return true;
     }
@@ -157,7 +156,7 @@ public class NathanielDate
         days += year / 4;
         
         //convert months to days
-        for(int i = 0; i <= month; i++)
+        for(int i = 0; i < month - 1; i++)
         {
             days += maxDays[i];
         }
@@ -168,7 +167,7 @@ public class NathanielDate
         return days;
     }
 
-    public int daysBetweenDates(NathanielDate dateOne, NathanielDate dateTwo)
+    public static int daysBetweenDates(NathanielDate dateOne, NathanielDate dateTwo)
     {
         int dayTotalOne = dateOne.getTotalDays();
         int dayTotalTwo = dateTwo.getTotalDays();
