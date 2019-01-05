@@ -8,25 +8,8 @@ public class NathanielDate
     private int day;
     private int month;
     private int year;
-    private static NathanielDate currentDate;
     private static Date date;
 
-    private enum Months
-    {
-        January,
-        February,
-        March,
-        April,
-        May,
-        June,
-        July,
-        August,
-        September,
-        November,
-        December
-    }
-
-    private Months months;
     private int[] maxDays = {31, 28, 31, 30,31,30,31,31,30,31,30,31};
 
     NathanielDate(int day, int month, int year)
@@ -38,7 +21,7 @@ public class NathanielDate
             this.year = year;
         }
 
-        this.date = new Date();
+        date = new Date();
     }
 
     
@@ -51,7 +34,7 @@ public class NathanielDate
             return false;
         if(day > maxDays[month-1])
         {
-            if (month == 1 && day == 28 && year % 4 == 0)
+            if (month == 2 && day == 28 && year % 4 == 0)
             {
                 return true;
             }
@@ -107,17 +90,7 @@ public class NathanielDate
             case "Dec": monthInt = 11;
         }
 
-        return new NathanielDate(day, monthInt, year);
-    }
-
-    public static int timeBetween(NathanielDate a, NathanielDate b)
-    {
-        return 0;
-    }
-
-    public static NathanielDate getCurrentDate()
-    {
-        return currentDate;
+        return new NathanielDate(day, monthInt + 1, year);
     }
     
     public int getDay()
@@ -141,5 +114,74 @@ public class NathanielDate
             this.month = month;
             this.year = year;
         }
+    }
+
+    //makes date n days in future based on current date. Will not take negative numbers
+    //date from whatever current date object holds.
+    public NathanielDate moveDateOut(int n)
+    {
+        int curDay = this.day;
+        int curMonth = this.month;
+        int curYear = this.year;
+
+        for (int i = 0; i < n; i++)
+        {
+            curDay++;
+            if (curDay > maxDays[month-1])
+            {
+                if (curYear % 4 == 0 && curMonth == 2 && curDay == 29)
+                {
+                    continue;
+                }
+                curDay = 1;
+                curMonth++;
+            }
+            if (curMonth > 12)
+            {
+                curDay = 1;
+                curMonth = 1;
+                curYear++;
+            }
+        }
+
+        return new NathanielDate(curDay, curMonth, curYear);
+    }
+
+    //day totals based on 1950 so that numbers aren't too large but can go back pretty far, and dates before then shouldn't really be manipulated that much anyway
+    public int getTotalDays()
+    {
+        //convert years to days since year 0
+        int days = year * 365;
+
+        // add leap days
+        days += year / 4;
+        
+        //convert months to days
+        for(int i = 0; i <= month; i++)
+        {
+            days += maxDays[i];
+        }
+        
+        //add day to how many days we have total
+        days += day;
+        
+        return days;
+    }
+
+    public int daysBetweenDates(NathanielDate dateOne, NathanielDate dateTwo)
+    {
+        int dayTotalOne = dateOne.getTotalDays();
+        int dayTotalTwo = dateTwo.getTotalDays();
+        
+        int diffDays;
+        if(dayTotalOne > dayTotalTwo)
+        {
+            diffDays = dayTotalOne - dayTotalTwo;
+        }
+        else
+        {
+            diffDays = dayTotalTwo - dayTotalOne;
+        }
+        return diffDays;
     }
 }
