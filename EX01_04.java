@@ -30,6 +30,9 @@ public class EX01_04
 
     static public double convert(double weight, double height)
     {
+        //PT -- name these numbers:
+        //  final double POUND_TO_KG = 0.453592;
+        //  double kg = weight * POUND_TO_KG;
         double kg = weight * 0.453592;
         double m = height * 0.0254;
 
