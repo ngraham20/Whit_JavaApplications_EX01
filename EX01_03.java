@@ -18,14 +18,17 @@ public class EX01_03
         {
             char character = inputString.charAt(i);
             // convert the char number to its integer value (for numbers, subtract 57)
+            //PT -- More readable: if (character >= '0' && character <= '9'
+            //PT -- -1
             if (character >= 48 && character <= 57)
             {
                 // the character is a number
-                int num = character - 48;
+                int num = character - 48; //PT - '0'
                 System.out.println("Number: " + Integer.toString(num));
                 // add digitPos times the number to the result
                 result = result * 10 + num;
             }
+            //PT -- only if this is the first character
             else if (character == 45)
             {
                 // the character is a negative sign
