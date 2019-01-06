@@ -6,6 +6,7 @@ public class EX01_02
 	{
 		Scanner userInput = new Scanner(System.in);
 		System.out.println("Give a radius for a circle please");
+		//PT -- again, why not nextInt or (better) nextDouble? -1
 		String radius = userInput.nextLine();
 		userInput.close();
 		final double pi = 3.14;
