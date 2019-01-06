@@ -10,6 +10,7 @@ public class EX01_01
 		int input;
 		do{
 		System.out.println("Please enter a number between 10 and 100.");
+			//PT -- why not nextInt? -1
 		String answer = userInput.nextLine();
 
 		userInput.close();
